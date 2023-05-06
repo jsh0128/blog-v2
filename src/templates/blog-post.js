@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import styled from "styled-components"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
@@ -27,9 +28,6 @@ const BlogPostTemplate = ({
           itemProp="articleBody"
         />
         <hr />
-        <footer>
-          <Bio />
-        </footer>
       </article>
       <nav className="blog-post-nav">
         <ul
@@ -43,16 +41,24 @@ const BlogPostTemplate = ({
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
+              <CustomNextLink
+                to={previous.fields.slug}
+                rel="prev"
+                className="controlPage"
+              >
+                {previous.frontmatter.title}
+              </CustomNextLink>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
+              <CustomNextLink
+                to={next.fields.slug}
+                rel="next"
+                className="controlPage"
+              >
+                {next.frontmatter.title}
+              </CustomNextLink>
             )}
           </li>
         </ul>
@@ -71,6 +77,19 @@ export const Head = ({ data: { markdownRemark: post } }) => {
 }
 
 export default BlogPostTemplate
+
+const CustomNextLink = styled(Link)`
+  display: block;
+  text-decoration: none !important;
+  border: 1px solid black;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  transition: 0.2s;
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`
 
 export const pageQuery = graphql`
   query BlogPostBySlug(

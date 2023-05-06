@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import styled from "styled-components"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -12,7 +12,6 @@ const BlogIndex = ({ data, location }) => {
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
@@ -24,13 +23,12 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
+            <Container key={post.fields.slug} to={post.fields.slug}>
               <article
                 className="post-list-item"
                 itemScope
@@ -38,9 +36,7 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
+                    <span itemProp="headline">{title}</span>
                   </h2>
                   <small>{post.frontmatter.date}</small>
                 </header>
@@ -53,7 +49,7 @@ const BlogIndex = ({ data, location }) => {
                   />
                 </section>
               </article>
-            </li>
+            </Container>
           )
         })}
       </ol>
@@ -62,6 +58,35 @@ const BlogIndex = ({ data, location }) => {
 }
 
 export default BlogIndex
+
+const Container = styled(Link)`
+  background-color: black;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: 0.2s;
+  color: white;
+  border: 2px solid white;
+  p {
+    color: white;
+  }
+  h2 {
+    color: white;
+  }
+  article {
+    margin-top: 0;
+  }
+  &:hover {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    p {
+      color: black;
+    }
+    h2 {
+      color: black;
+    }
+  }
+`
 
 /**
  * Head export to define metadata for the page

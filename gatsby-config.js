@@ -9,15 +9,17 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: "잘하자 성훈아",
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `성훈`,
+      summary: ``,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `주로 제가 개발하면서 느낀 경험, 이슈들을 주되게 작성합니다. 이슈 해결방법보다는 이슈가 생겼던 이유, 개념에 대한 설명을 작성합니다.`,
+    siteUrl: `https://jsh0128.github.io/`,
     social: {
-      twitter: `kylemathews`,
+      instagram: "https://www.instagram.com/__wjdtjdgns/",
+      linkedin:
+        "https://www.linkedin.com/in/%EC%84%B1%ED%9B%88-%EC%A0%95-210691210/",
     },
   },
   plugins: [
@@ -118,7 +120,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
   ],
